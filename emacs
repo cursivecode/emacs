@@ -60,8 +60,8 @@
 ;-----------------------------------------------------------------------
 ; tabs
 ;-----------------------------------------------------------------------
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 2)
+;(setq-default indent-tabs-mode nil)
+;(setq-default tab-width 2)
 ;(setq indent-line-function 'insert-tab)
 
 ;-----------------------------------------------------------------------
@@ -259,7 +259,11 @@
 ;-----------------------------------------------------------------------
 ; go hook
 ;-----------------------------------------------------------------------
-(add-hook 'before-save-hook 'gofmt-before-save)
+(add-hook 'go-mode-hook
+          (lambda ()
+            (add-hook 'before-save-hook 'gofmt-before-save)
+            (setq tab-width 4)
+            (setq indent-tabs-mode 1)))
 
 
 ;-----------------------------------------------------------------------
