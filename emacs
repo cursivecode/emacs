@@ -7,7 +7,8 @@
                      cider coffee-mode flycheck jade-mode stylus-mode
                      sws-mode highlight-indentation simple-httpd js2-mode
                      skewer-mode go-mode go-autocomplete haskell-mode ghc
-                     exec-path-from-shell 
+                     exec-path-from-shell emmet-mode yaml-mode web-mode
+		     sass-mode
                      ))
 
 ; repositories 
@@ -77,8 +78,8 @@
 ;-----------------------------------------------------------------------
 ; font
 ;-----------------------------------------------------------------------
-;(set-face-attribute 'default nil :font "DejaVu Sans Mono-14")
-(set-face-attribute 'default nil :font "Inconsolata-14")
+(set-face-attribute 'default nil :font "DejaVu Sans Mono-14")
+;(set-face-attribute 'default nil :font "Inconsolata-14")
 
 ;-----------------------------------------------------------------------
 ; backup-directory
@@ -120,6 +121,16 @@
 (helm-mode t)
 
 ;-----------------------------------------------------------------------
+; emmet mode
+;-----------------------------------------------------------------------
+(require 'emmet-mode)
+
+;-----------------------------------------------------------------------
+; js2-mode
+;-----------------------------------------------------------------------
+(setq js2-highlight-level 5)
+
+;-----------------------------------------------------------------------
 ; goflycheck mode
 ;-----------------------------------------------------------------------
 (add-to-list 'load-path "~/projects/go/src/github.com/dougm/goflymake")
@@ -135,6 +146,13 @@
 ; go-autocomplete
 ;-----------------------------------------------------------------------
 (require 'go-autocomplete)
+
+;-----------------------------------------------------------------------
+; jshint
+;-----------------------------------------------------------------------
+(require 'flycheck)
+(add-hook 'js-mode-hook
+          (lambda () (flycheck-mode t)))
 
 ;-----------------------------------------------------------------------
 ; paredit-mode
@@ -267,6 +285,13 @@
 
 
 ;-----------------------------------------------------------------------
+; js2-mode hook
+;-----------------------------------------------------------------------
+(add-hook 'js-mode-hook 'js2-minor-mode)
+(add-hook 'js2-mode-hook 'ac-js2-mode)
+
+
+;-----------------------------------------------------------------------
 ; highlight-indentation hook
 ;-----------------------------------------------------------------------
 ;(add-hook 'stylus-mode-hook #'highlight-indentation-mode)
@@ -280,10 +305,34 @@
 (add-hook 'css-mode-hook 'skewer-css-mode)
 (add-hook 'html-mode-hook 'skewer-html-mode)
 
+;-----------------------------------------------------------------------
+; emmet-mode
+;-----------------------------------------------------------------------
+(add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+(add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+
 
 ;=======================================================================
 ; auto-mode
 ;=======================================================================
+(add-to-list 'auto-mode-alist '("\\.html.erb$" . web-mode)) 
+(add-to-list 'auto-mode-alist '("\\.html$" . web-mode)) 
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode)) 
+(add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode)) 
+(add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode)) 
+(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode)) 
 
 (put 'dired-find-alternate-file 'disabled nil)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(js2-external-variable ((t (:foreground "light slate gray"))))
+ '(js2-function-param ((t (:foreground "light slate gray")))))
