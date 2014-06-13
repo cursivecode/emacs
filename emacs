@@ -8,7 +8,8 @@
                      sws-mode highlight-indentation simple-httpd js2-mode
                      skewer-mode go-mode go-autocomplete haskell-mode ghc
                      exec-path-from-shell emmet-mode yaml-mode web-mode
-		     sass-mode
+		     sass-mode elixir-mode yasnippet markdown-mode
+		     handlebars-mode
                      ))
 
 ; repositories 
@@ -209,19 +210,19 @@
 ;-----------------------------------------------------------------------
 ; eval emacs file - normal mode
 ;-----------------------------------------------------------------------
-(define-key evil-normal-state-map (kbd ",sv")
+(define-key evil-normal-state-map (kbd "\\sv")
   (lambda () (interactive) (load-file "~/.emacs")))
 
 ;-----------------------------------------------------------------------
 ; open emacs file - normal mode
 ;-----------------------------------------------------------------------
-(define-key evil-normal-state-map (kbd ",ev")
+(define-key evil-normal-state-map (kbd "\\ev")
   (lambda () (interactive) (find-file "~/.emacs")))
 
 ;-----------------------------------------------------------------------
 ; open files, recent files, and buffers - normal mode
 ;-----------------------------------------------------------------------
-(define-key evil-normal-state-map (kbd ",d") 'helm-for-files)
+(define-key evil-normal-state-map (kbd "\\d") 'helm-for-files)
 
 ;-----------------------------------------------------------------------
 ; search project - normal mode
@@ -232,7 +233,7 @@
 ;-----------------------------------------------------------------------
 ; comment-or-uncomment - normal mode
 ;-----------------------------------------------------------------------
-(define-key evil-visual-state-map (kbd ",c") 'comment-or-uncomment-region)
+(define-key evil-visual-state-map (kbd "\\c") 'comment-or-uncomment-region)
 
 ;-----------------------------------------------------------------------
 ; paste - insert mode
@@ -242,17 +243,17 @@
 ;-----------------------------------------------------------------------
 ; ace-jump - normal mode
 ;-----------------------------------------------------------------------
-(define-key evil-normal-state-map (kbd ",q") 'ace-jump-mode)
+(define-key evil-normal-state-map (kbd "\\q") 'ace-jump-mode)
   
 ;-----------------------------------------------------------------------
 ; magit-status - normal mode
 ;-----------------------------------------------------------------------
-(define-key evil-normal-state-map (kbd ",m") 'magit-status)
+(define-key evil-normal-state-map (kbd "\\m") 'magit-status)
 
 ;-----------------------------------------------------------------------
 ; eval form in repl - normal mode
 ;-----------------------------------------------------------------------
-(define-key evil-normal-state-map (kbd ",er") 'cider-eval-last-sexp-to-repl)
+(define-key evil-normal-state-map (kbd "\\er") 'cider-eval-last-sexp-to-repl)
 
 
 ;=======================================================================
@@ -334,5 +335,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(js2-error ((t (:foreground "orange red"))))
  '(js2-external-variable ((t (:foreground "light slate gray"))))
  '(js2-function-param ((t (:foreground "light slate gray")))))
